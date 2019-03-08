@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]--><!--[if gt IE 8]><!-->
+
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Cytoscape Session Viewer</title>
+  <meta name="description" content="Viewer for JSON files exported from Cytoscape 3">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!--
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-bootstrap-colorpicker/css/colorpicker.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+-->
+  <link rel="stylesheet" href="styles/vendor.css">
+  <link rel="stylesheet" href="styles/app.css">
+</head>
+<body ng-app="cyViewerApp" ng-controller="cyCtrl">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please
+    <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <div class="main" ng-view=""></div>
+
+  <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+  <![endif]-->    
+
+    <div id="network" style="background-color: rgb(250, 250, 250)"></div>
+    
+    <!-- left selection bar -->
+    <div class="summary" style="width:20%" ng-show="overlayState.show">
+        <h3>Network:</h3>
+        <select class="form-control" id="network-selector"
+                ng-options="networkName for networkName in networkNames"
+                ng-change="switchNetwork()" ng-model="currentNetworkName">
+        </select>
+        <h3>Layout:</h3>
+        <select class="form-control" id="layout-selector"
+                ng-options="layoutName for layoutName in LAYOUTS"
+                ng-change="switchLayout()" ng-model="currentLayout">
+        </select>
+    </div>
+
+    <!-- right tool bar -->
+    <div class="home-button" ng-click="toggleToolbar()" style="clear:both" tooltip-placement="left" tooltip="Show/Hide Toolbar">
+      <span class="glyphicon glyphicon-sort"></span>
+    </div>
+    <div class="command-bar" ng-show="toolbarState.show">
+      <div class="icon-button" ng-click="toggleOverlay()" tooltip-placement="left" tooltip="Show/Hide Selector">
+        <span class="glyphicon glyphicon-cog"></span>
+      </div>
+      <div class="icon-button" ng-click="fit()" tooltip-placement="left" tooltip="Fit to window">
+        <span class="glyphicon glyphicon-resize-full"></span>
+      </div>
+    </div>
+
+  <script src="data/networks.js"> </script>
+  <script src="data/styles.js"> </script>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+<!--
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/spin.js/spin.js"></script>
+  <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+  <script src="bower_components/angular-underscore/angular-underscore.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/cola.v3.min/index.js"></script>
+  <script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
+  <script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/spinjs/spin.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+-->
+  <script src="scripts/vendor.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/custom.js"></script>
+</body>
+</html>
